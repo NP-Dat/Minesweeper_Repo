@@ -12,6 +12,14 @@ import javax.swing.JMenuItem;
 import model.LoadData;
 
 public class GameFrame extends JFrame {
+	private static GameFrame instance = null; // singleton
+
+	public static GameFrame getInstance(){
+		if(instance == null){
+			instance = new GameFrame(12, 12, 15);
+		}
+		return instance;
+	}
 
 	/**
 	 * 
@@ -104,7 +112,7 @@ public class GameFrame extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new GameFrame(12, 12, 15);
+		GameFrame game = GameFrame.getInstance();
 	}
 
 	public LoadData getLoadData() {
