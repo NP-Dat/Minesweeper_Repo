@@ -16,13 +16,13 @@ public class LoadData {
 
 		try {
 
-			InputStream is = LoadData.class.getResourceAsStream("/minesweeper.png");
+			InputStream is = LoadData.class.getResourceAsStream("/model/minesweeper.png");
             assert is != null;
             BufferedImage img = ImageIO.read(is);
 
 			listImage.put("title", img.getSubimage(0, 84, 114, 25));
 			listImage.put("noUse", img.getSubimage(0, 39, 16, 16));
-			listImage.put("co", img.getSubimage(16, 39, 16, 16));
+			listImage.put("flag", img.getSubimage(16, 39, 16, 16));
 			listImage.put("boomRed", img.getSubimage(32, 39, 16, 16));
 			listImage.put("boomX", img.getSubimage(48, 39, 16, 16));
 			listImage.put("boom", img.getSubimage(64, 39, 16, 16));

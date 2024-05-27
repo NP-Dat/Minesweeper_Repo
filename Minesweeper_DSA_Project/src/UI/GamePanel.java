@@ -1,4 +1,4 @@
-package view;
+package UI;
 
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements MouseListener {
 						}
 					}
 				} else if (e.getButton() == 3 && e.getSource() == arrayButton[i][j]) {
-					world.camCo(i, j);
+					world.putFlag(i, j);
 				}
 				if (e.getClickCount() == 2 && e.getSource() == arrayButton[i][j] && world.getArrayBoolean()[i][j]) {
 					if (!world.clickDouble(i, j)) {
