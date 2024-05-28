@@ -1,4 +1,4 @@
-package view;
+package UI;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -118,7 +118,7 @@ public class PanelNotification extends JPanel {
 	}
 
 	public void updateLbBoom() {
-		String boom = String.valueOf(game.getBoom() - game.getWorld().getCo());
+		String boom = String.valueOf(game.getBoom() - game.getWorld().getFlag());
 		if (boom.length() == 1) {
 			lbBoom.setNumber("00" + boom);
 		} else if (boom.length() == 2) {

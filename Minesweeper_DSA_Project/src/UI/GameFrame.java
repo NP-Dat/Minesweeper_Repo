@@ -1,4 +1,4 @@
-package view;
+package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,14 +12,6 @@ import javax.swing.JMenuItem;
 import model.LoadData;
 
 public class GameFrame extends JFrame {
-	private static GameFrame instance = null; // singleton
-
-	public static GameFrame getInstance(){
-		if(instance == null){
-			instance = new GameFrame(12, 12, 15);
-		}
-		return instance;
-	}
 
 	/**
 	 * 
@@ -51,7 +43,7 @@ public class GameFrame extends JFrame {
 
 		if (w == 8) {
 			basic.setIcon(new ImageIcon(loadData.getListImage().get("tich")));
-		} else if (w == 16) {
+		} else if (w == 16 && h == 16) {
 			nomal.setIcon(new ImageIcon(loadData.getListImage().get("tich")));
 		} else {
 			hard.setIcon(new ImageIcon(loadData.getListImage().get("tich")));
@@ -109,10 +101,6 @@ public class GameFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-	}
-
-	public static void main(String[] args) {
-		GameFrame game = GameFrame.getInstance();
 	}
 
 	public LoadData getLoadData() {

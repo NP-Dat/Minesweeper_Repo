@@ -1,4 +1,4 @@
-package view;
+package UI;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -76,7 +76,7 @@ public class ButtonPlay extends JButton {
 					getPreferredSize().width, getPreferredSize().height, null);
 			break;
 		case 9:
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("co"), 0, 0,
+			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("flag"), 0, 0,
 					getPreferredSize().width, getPreferredSize().height, null);
 			break;
 		case 10:
