@@ -13,6 +13,15 @@ import model.LoadData;
 
 public class GameFrame extends JFrame {
 
+	private static GameFrame instance = null;
+
+	public static GameFrame getInstance(){
+		if(instance == null){
+			instance = new GameFrame(12,12,15);
+		}
+		return instance;
+	}
+
 	/**
 	 * 
 	 */
