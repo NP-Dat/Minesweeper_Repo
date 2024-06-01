@@ -6,10 +6,14 @@ import UI.ButtonPlay;
 import UI.ButtonSmile;
 import UI.GamePanel;
 import UI.LableNumber;
+import history.HistoryStack;
 
 public class World {
 
 	private Random rd;
+
+	private int[][] arrayInteraction;	// 1 for Already opened, 3 for putting Flag, 0 for removing Flag (it come back normal)
+	private HistoryStack historyStack;
 
 	private ButtonPlay[][] arrayButton;
 	private int[][] arrayBomb;// Boom là số -1
@@ -21,9 +25,6 @@ public class World {
 
 	private boolean isComplete;
 	private boolean isEnd;
-
-	private ButtonSmile buttonSmile;
-	private LableNumber lbTime, lbBoom;
 
 	private int bomb;
 
@@ -38,6 +39,8 @@ public class World {
 		arrayBomb = new int[w][h];
 		arrayBoolean = new boolean[w][h];
 		arrayFlag = new boolean[w][h];
+
+		arrayInteraction = new int[w][h];
 		
 		rd = new Random();
 
@@ -96,14 +99,43 @@ public class World {
 				arrayButton[i][j].setNumber(-1);
 				arrayButton[i][j].repaint();
 				game.getP1().updateLbBoom();
+
+				arrayInteraction[i][j] = -3;		// -3 for removing Flag
+
 			} else if (flag < bomb) {
 				flag++;
 				arrayFlag[i][j] = true;
 				arrayButton[i][j].setNumber(9);
 				arrayButton[i][j].repaint();
 				game.getP1().updateLbBoom();
+
+				arrayInteraction[i][j] = 3;		// 3 for putting Flag
 			}
 		}
+
+	}
+
+	public void putFlagWithoutCondition(int i, int j) {
+
+		if (arrayFlag[i][j]) {
+			flag--;
+			arrayFlag[i][j] = false;
+			arrayButton[i][j].setNumber(-1);
+			arrayButton[i][j].repaint();
+			game.getP1().updateLbBoom();
+
+			arrayInteraction[i][j] = 0;		// -3 for removing Flag
+
+		} else if (flag < bomb) {
+			flag++;
+			arrayFlag[i][j] = true;
+			arrayButton[i][j].setNumber(9);
+			arrayButton[i][j].repaint();
+			game.getP1().updateLbBoom();
+
+			arrayInteraction[i][j] = 3;		// 3 for putting Flag
+		}
+
 
 	}
 
@@ -194,6 +226,54 @@ public class World {
 
 	}
 
+	public boolean openWithoutCondition(int i, int j) {
+
+			if (!arrayBoolean[i][j]) {
+				if (arrayBomb[i][j] == 0) {
+
+					arrayBoolean[i][j] = true;
+					arrayButton[i][j].setNumber(0);
+					arrayButton[i][j].repaint();
+
+					for (int l = i - 1; l <= i + 1; l++) {
+						for (int k = j - 1; k <= j + 1; k++) {
+							if (l >= 0 && l <= arrayBomb.length - 1 && k >= 0 && k <= arrayBomb[i].length - 1) {
+								if (!arrayBoolean[l][k]) {
+									openWithoutCondition(l, k);
+								}
+							}
+						}
+					}
+
+				} else {
+
+					int number = arrayBomb[i][j];
+
+					if (number != -1) {
+
+						arrayBoolean[i][j] = true;
+
+						arrayButton[i][j].setNumber(number);
+						arrayButton[i][j].repaint();
+
+						return true;
+					}
+				}
+			}
+
+			if (arrayBomb[i][j] == -1) {
+				arrayBoolean[i][j] = true;
+				arrayButton[i][j].setNumber(11);
+				arrayButton[i][j].repaint();
+
+
+				return false;
+			} else {
+				return true;
+			}
+
+	}
+
 	public boolean checkWin() {
 		int count = 0;
 		for (int i = 0; i < arrayBoolean.length; i++) {
@@ -257,36 +337,16 @@ public class World {
 		}
 	}
 
+	public int[][] getArrayBomb() {
+		return arrayBomb;
+	}
+
 	public ButtonPlay[][] getArrayButton() {
 		return arrayButton;
 	}
 
 	public void setArrayButton(ButtonPlay[][] arrayButton) {
 		this.arrayButton = arrayButton;
-	}
-
-	public ButtonSmile getButtonSmile() {
-		return buttonSmile;
-	}
-
-	public void setButtonSmile(ButtonSmile buttonSmile) {
-		this.buttonSmile = buttonSmile;
-	}
-
-	public LableNumber getLbTime() {
-		return lbTime;
-	}
-
-	public void setLbTime(LableNumber lbTime) {
-		this.lbTime = lbTime;
-	}
-
-	public LableNumber getLbBoom() {
-		return lbBoom;
-	}
-
-	public void setLbBoom(LableNumber lbBoom) {
-		this.lbBoom = lbBoom;
 	}
 
 	public boolean[][] getArrayBoolean() {
@@ -313,12 +373,12 @@ public class World {
 		this.isEnd = isEnd;
 	}
 
-	public boolean[][] getArrayCamCo() {
+	public boolean[][] getArrayPutFlag() {
 		return arrayFlag;
 	}
 
-	public void setArrayCamCo(boolean[][] arrayCamCo) {
-		this.arrayFlag = arrayCamCo;
+	public void setArrayPutFlag(boolean[][] arrayPutFlag) {
+		this.arrayFlag = arrayPutFlag;
 	}
 
 	public int getFlag() {
@@ -328,5 +388,7 @@ public class World {
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-
+	public int[][] getArrayInteraction() {
+		return arrayInteraction;
+	}
 }

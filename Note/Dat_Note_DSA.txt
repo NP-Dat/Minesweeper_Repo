@@ -1,0 +1,4 @@
+- trong World class, tạo int arrayInteraction
+	+ trong putFlag method, set arrayInteraction bằng 3 hoặc bằng -3
+
+- trong GamePanel class, nó implement iSubject, tạo biến historyStack và implement notifyHistory method.
