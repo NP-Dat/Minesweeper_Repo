@@ -8,8 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import control.World;
+import control.iSubject;
+import history.HistoryStack;
 
-public class GamePanel extends JPanel implements MouseListener {
+public class GamePanel extends JPanel implements MouseListener, iSubject {
 
 	/**
 	 * 
@@ -21,6 +23,8 @@ public class GamePanel extends JPanel implements MouseListener {
 	private GameFrame gameFrame;
 
 	private World world;
+
+	private HistoryStack historyStack;
 
 	private int w;
 	private int h;
@@ -35,6 +39,8 @@ public class GamePanel extends JPanel implements MouseListener {
 		this.h = h;
 
 		world = new World(w, h, boom, this);
+
+		historyStack = HistoryStack.getHistoryStack();
 
 		setLayout(new BorderLayout(20, 20));
 
@@ -53,11 +59,13 @@ public class GamePanel extends JPanel implements MouseListener {
 		ButtonPlay[][] arrayButton = p2.getArrayButton();
 		for (int i = 0; i < arrayButton.length; i++) {
 			for (int j = 0; j < arrayButton[i].length; j++) {
-				if (e.getButton() == 1 && e.getSource() == arrayButton[i][j] && !world.getArrayCamCo()[i][j]) {
+				if (e.getButton() == 1 && e.getSource() == arrayButton[i][j] && !world.getArrayPutFlag()[i][j]) {
 
 					if (!getP1().getTime().isRunning()) {
 						getP1().getTime().start();
 					}
+
+					world.getArrayInteraction()[i][j] = 1;        // which button have a number and be opened will be marked 1
 
 					if (!world.open(i, j)) {
 
@@ -75,7 +83,8 @@ public class GamePanel extends JPanel implements MouseListener {
 							} else {
 								world.fullTrue();
 							}
-						} else if (world.isEnd()) {
+						}
+						else if (world.isEnd()) {
 
 							getP1().getTime().stop();
 							getP1().getBt().setStage(ButtonSmile.win);
@@ -108,6 +117,8 @@ public class GamePanel extends JPanel implements MouseListener {
 				}
 			}
 		}
+
+		notifyHistory();
 	}
 
 	@Override
@@ -123,7 +134,6 @@ public class GamePanel extends JPanel implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
-
 	public int getW() {
 		return w;
 	}
@@ -178,5 +188,14 @@ public class GamePanel extends JPanel implements MouseListener {
 
 	public void setP2(PanelPlayer p2) {
 		this.p2 = p2;
+	}
+
+	public HistoryStack getHistoryStack() {
+		return historyStack;
+	}
+
+	@Override
+	public void notifyHistory() {
+		historyStack.update(world.getArrayInteraction());
 	}
 }
