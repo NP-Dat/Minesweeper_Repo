@@ -13,6 +13,7 @@ import model.LoadData;
 
 public class GameFrame extends JFrame {
 
+	// Singleton pattern
 	private static GameFrame instance = null; 
 
 	public static GameFrame getInstance(){
