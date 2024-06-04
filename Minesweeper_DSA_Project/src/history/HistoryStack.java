@@ -30,13 +30,13 @@ public class HistoryStack implements iHistoryStackObserve {
         top += 1;
         historyStack.add(deepCopy(arrayInteraction));
 
-//   this code is used for showing the all the moves in history
-        for (int[][] state : historyStack) {
-            for (int[] row : state) {
-                System.out.println(Arrays.toString(row));
-            }
-            System.out.println();
-        }
+//   this code is used for showing all the moves in history
+//        for (int[][] state : historyStack) {
+//            for (int[] row : state) {
+//                System.out.println(Arrays.toString(row));
+//            }
+//            System.out.println();
+//        }
     }
 
     public int[][] pop(){

@@ -128,30 +128,36 @@ public class PanelNotification extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
 					int[][] currentHstack = game.getHistoryStack().pop();
-					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
-						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
-							getArrayButtonInWorld()[i][j].setNumber(-1);
-							getArrayButtonInWorld()[i][j].repaint();
-							game.getWorld().getArrayBoolean()[i][j] = false;
-							game.getWorld().getArrayFlag()[i][j] = false;
+					if(currentHstack == null){
+						int option = JOptionPane.showConfirmDialog(game, "Game is over, play again ?", "Notification",
+								JOptionPane.YES_NO_OPTION);
+						if (option == JOptionPane.YES_OPTION) {
+							game.getGameFrame().setVisible(false);
+							new GameFrame(game.getW(), game.getH(), game.getBoom());
 						}
-					}
-
-					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
-						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
-							if(currentHstack[i][j] == 1){
-								game.getWorld().openWithoutCondition(i,j);
-							}
-							else if(currentHstack[i][j] == 3){
-								game.getWorld().putFlagWithoutCondition(i,j);
-							}
-							else{
-
+					} else {
+						for (int i = 0; i < getArrayButtonInWorld().length; i++) {
+							for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
+								getArrayButtonInWorld()[i][j].setNumber(-1);
+								getArrayButtonInWorld()[i][j].repaint();
+								game.getWorld().getArrayBoolean()[i][j] = false;
+								game.getWorld().getArrayFlag()[i][j] = false;
 							}
 						}
+
+						for (int i = 0; i < getArrayButtonInWorld().length; i++) {
+							for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
+								if (currentHstack[i][j] == 1) {
+									game.getWorld().openWithoutCondition(i, j);
+								} else if (currentHstack[i][j] == 3) {
+									game.getWorld().putFlagWithoutCondition(i, j);
+								} else {
+
+								}
+							}
+						}
+
 					}
-
-
 
 
 				}
