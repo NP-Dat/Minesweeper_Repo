@@ -133,6 +133,7 @@ public class PanelNotification extends JPanel {
 							getArrayButtonInWorld()[i][j].setNumber(-1);
 							getArrayButtonInWorld()[i][j].repaint();
 							game.getWorld().getArrayBoolean()[i][j] = false;
+							game.getWorld().getArrayFlag()[i][j] = false;
 						}
 					}
 
