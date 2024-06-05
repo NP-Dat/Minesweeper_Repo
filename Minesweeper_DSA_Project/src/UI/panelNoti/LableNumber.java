@@ -1,4 +1,4 @@
-package UI;
+package UI.panelNoti;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

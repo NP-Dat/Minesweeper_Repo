@@ -1,11 +1,20 @@
-package UI;
+package UI.panelNoti;
 
+import UI.GameFrame;
+import UI.panelNoti.Decorator.iNotiButton;
+import UI.panelNoti.PanelNotification;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
-public class ButtonSmile extends JButton {
+public class ButtonSmile extends iNotiButton {
 
 	/**
 	 * 
@@ -17,8 +26,6 @@ public class ButtonSmile extends JButton {
 	public static final int wow = 3;
 	public static final int now = 4;
 
-	private PanelNotification p;
-
 	private int stage;
 
 	public ButtonSmile(PanelNotification p) {
@@ -26,6 +33,7 @@ public class ButtonSmile extends JButton {
 		setPreferredSize(new Dimension(50, 50));
 
 		stage = now;
+
 	}
 
 	@Override
@@ -66,4 +74,13 @@ public class ButtonSmile extends JButton {
 		this.stage = stage;
 	}
 
+	@Override
+	public PanelNotification getPanelNoti() {
+		return p;
+	}
+
+	@Override
+	public void setPanelNoti(PanelNotification p) {
+		this.p = p;
+	}
 }

@@ -7,6 +7,10 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import UI.panelNoti.ButtonSmile;
+import UI.panelNoti.Decorator.HistoryDecorator;
+import UI.panelNoti.Decorator.SmileDecorator;
+import UI.panelNoti.PanelNotification;
 import control.World;
 import control.iSubject;
 import history.HistoryStack;
@@ -44,7 +48,7 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 
 		setLayout(new BorderLayout(20, 20));
 
-		add(p1 = new PanelNotification(this), BorderLayout.NORTH);
+		add(p1 = new HistoryDecorator(new SmileDecorator(new PanelNotification(this))), BorderLayout.NORTH);
 		add(p2 = new PanelPlayer(this), BorderLayout.CENTER);
 	}
 

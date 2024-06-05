@@ -9,6 +9,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import UI.panelNoti.Decorator.PanelDecor;
+import UI.panelNoti.PanelNotification;
 import model.LoadData;
 
 public class GameFrame extends JFrame {
@@ -38,6 +40,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(int w, int h, int boom) {
 
 		loadData = new LoadData();
+		PanelDecor.clearListButton();
 
 		setJMenuBar(mnb = new JMenuBar());
 		mnb.add(menu = new JMenu("Game"));

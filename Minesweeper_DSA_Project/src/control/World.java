@@ -3,9 +3,7 @@ package control;
 import java.util.Random;
 
 import UI.ButtonPlay;
-import UI.ButtonSmile;
 import UI.GamePanel;
-import UI.LableNumber;
 import history.HistoryStack;
 
 public class World {
