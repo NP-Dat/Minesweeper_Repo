@@ -13,7 +13,7 @@ import model.LoadData;
 
 public class GameFrame extends JFrame {
 
-	private static GameFrame instance = null; 
+	private static GameFrame instance = null;
 
 	public static GameFrame getInstance(){
 		if(instance == null){
@@ -104,11 +104,10 @@ public class GameFrame extends JFrame {
 
 		add(gamePanel = new GamePanel(w, h, boom, this));
 
-		setIconImage(loadData.getListImage().get("smile")); // too small icon -> change to smile pic
+		setIconImage(loadData.getListImage().get("title"));
 		pack();
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setTitle("Mine Sweeper"); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}

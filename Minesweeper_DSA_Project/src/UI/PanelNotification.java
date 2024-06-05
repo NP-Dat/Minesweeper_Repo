@@ -16,7 +16,7 @@ import javax.swing.Timer;
 public class PanelNotification extends JPanel {
 
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,6 @@ public class PanelNotification extends JPanel {
 //		lbBoom = game.getWorld().getLbBoom();		World should not hold the UI components, just let class in UI package do it
 
 //		bt = game.getWorld().getButtonSmile();
-
 		setLayout(new BorderLayout());
 
 		setBorder(BorderFactory.createLoweredBevelBorder());
@@ -68,179 +67,168 @@ public class PanelNotification extends JPanel {
 		p13.add(bHistory = new ButtonHistory(this));
 
 
+		bt.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				bt.setStage(ButtonSmile.now);
+				bt.repaint();
+
+				int option = JOptionPane.showConfirmDialog(null, "Do you want to play new game?", "Notification",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					getGame().getGameFrame().setVisible(false);
+					new GameFrame(game.getW(), game.getH(), game.getBoom());
+				}
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
+					getGame().getGameFrame().setVisible(false);
+					new GameFrame(game.getW(), game.getH(), game.getBoom());
+				} else {
+					bt.setStage(ButtonSmile.press);
+					bt.repaint();
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+
+		bHistory.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
+					int[][] currentHstack = game.getHistoryStack().pop();
+					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
+						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
+							getArrayButtonInWorld()[i][j].setNumber(-1);
+							getArrayButtonInWorld()[i][j].repaint();
+							game.getWorld().getArrayBoolean()[i][j] = false;
+						}
+					}
+
+					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
+						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
+							if(currentHstack[i][j] == 1){
+								game.getWorld().openWithoutCondition(i,j);
+							}
+							else if(currentHstack[i][j] == 3){
+								game.getWorld().putFlagWithoutCondition(i,j);
+							}
+							else{
+
+							}
+						}
+					}
 
 
 
-//		bt.addMouseListener(new MouseListener() {
-//
-//			@Override
-//			public void mouseReleased(MouseEvent e) {
-//				bt.setStage(ButtonSmile.now);
-//				bt.repaint();
-//
-//				int option = JOptionPane.showConfirmDialog(null, "Do you want to play new game?", "Notification",
-//						JOptionPane.YES_NO_OPTION);
-//				if (option == JOptionPane.YES_OPTION) {
-//					getGame().getGameFrame().setVisible(false);
-//					new GameFrame(game.getW(), game.getH(), game.getBoom());
-//				}
-//			}
-//
-//			@Override
-//			public void mousePressed(MouseEvent e) {
-//				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
-//					getGame().getGameFrame().setVisible(false);
-//					new GameFrame(game.getW(), game.getH(), game.getBoom());
-//				} else {
-//					bt.setStage(ButtonSmile.press);
-//					bt.repaint();
-//				}
-//			}
-//
-//			@Override
-//			public void mouseExited(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//			}
-//		});
-//
-//		bHistory.addMouseListener(new MouseListener() {
-//
-//			@Override
-//			public void mouseReleased(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mousePressed(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseExited(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
-//					int[][] currentHstack = game.getHistoryStack().pop();
-//					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
-//						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
-//							getArrayButtonInWorld()[i][j].setNumber(-1);
-//							getArrayButtonInWorld()[i][j].repaint();
-//							game.getWorld().getArrayBoolean()[i][j] = false;
-//						}
-//					}
-//
-//					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
-//						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
-//							if(currentHstack[i][j] == 1){
-//								game.getWorld().openWithoutCondition(i,j);
-//							}
-//							else if(currentHstack[i][j] == 3){
-//								game.getWorld().putFlagWithoutCondition(i,j);
-//							}
-//							else{
-//
-//							}
-//						}
-//					}
-//
-//
-//
-//
-//				}
-//			}
-//		});
 
+				}
+			}
+		});
 	}
 
-		@Override
-		public void addMouseListener (MouseListener listener){
-			bt.addMouseListener(listener);
-			bHistory.addMouseListener(listener);
-		}
-
-		public void updateLbTime () {
-			if (nowTime > 999) {
-				lbTime.setNumber("voCuc");
+	public void updateLbTime() {
+		if (nowTime > 999) {
+			lbTime.setNumber("voCuc");
+		} else {
+			String cTime = String.valueOf(nowTime);
+			if (cTime.length() == 1) {
+				lbTime.setNumber("00" + cTime);
+			} else if (cTime.length() == 2) {
+				lbTime.setNumber("0" + cTime);
 			} else {
-				String cTime = String.valueOf(nowTime);
-				if (cTime.length() == 1) {
-					lbTime.setNumber("00" + cTime);
-				} else if (cTime.length() == 2) {
-					lbTime.setNumber("0" + cTime);
-				} else {
-					lbTime.setNumber(cTime);
-				}
-
-				lbTime.repaint();
+				lbTime.setNumber(cTime);
 			}
-		}
 
-		public void updateLbBoom () {
-			String boom = String.valueOf(game.getBoom() - game.getWorld().getFlag());
-			if (boom.length() == 1) {
-				lbBoom.setNumber("00" + boom);
-			} else if (boom.length() == 2) {
-				lbBoom.setNumber("0" + boom);
-			} else {
-				lbBoom.setNumber("0" + boom);
-			}
-			lbBoom.repaint();
+			lbTime.repaint();
 		}
+	}
 
-		public GamePanel getGame () {
-			return game;
+	public void updateLbBoom() {
+		String boom = String.valueOf(game.getBoom() - game.getWorld().getFlag());
+		if (boom.length() == 1) {
+			lbBoom.setNumber("00" + boom);
+		} else if (boom.length() == 2) {
+			lbBoom.setNumber("0" + boom);
+		} else {
+			lbBoom.setNumber("0" + boom);
 		}
+		lbBoom.repaint();
+	}
 
-		public void setGame (GamePanel game){
-			this.game = game;
-		}
+	public GamePanel getGame() {
+		return game;
+	}
 
-		public Timer getTime () {
-			return time;
-		}
+	public void setGame(GamePanel game) {
+		this.game = game;
+	}
 
-		public void setTime (Timer time){
-			this.time = time;
-		}
+	public Timer getTime() {
+		return time;
+	}
 
-		public ButtonSmile getBt () {
-			return bt;
-		}
+	public void setTime(Timer time) {
+		this.time = time;
+	}
 
-		public void setBt (ButtonSmile bt){
-			this.bt = bt;
-		}
+	public ButtonSmile getBt() {
+		return bt;
+	}
 
-		public ButtonHistory getBHistory () {
-			return bHistory;
-		}
+	public void setBt(ButtonSmile bt) {
+		this.bt = bt;
+	}
 
-		public void setBHistory (ButtonHistory bHistory){
-			this.bHistory = bHistory;
-		}
+	public ButtonHistory getBHistory() {
+		return bHistory;
+	}
 
-		public JPanel getPanel ( int a){
-			return switch (a) {
-				case 11 -> p11;
-				case 12 -> p12;
-				case 13 -> p13;
-				default -> null;
-			};
-		}
+	public void setBHistory(ButtonHistory bHistory) {
+		this.bHistory = bHistory;
+	}
+
+	public JPanel getPanel(int a) {
+        return switch (a) {
+            case 11 -> p11;
+            case 12 -> p12;
+            case 13 -> p13;
+            default -> null;
+        };
+	}
 
 	public ButtonPlay[][] getArrayButtonInWorld() {
 		return game.getWorld().getArrayButton();
 	}
-
 }
