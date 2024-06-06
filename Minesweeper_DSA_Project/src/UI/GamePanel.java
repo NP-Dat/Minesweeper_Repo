@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 
 		world = new World(w, h, boom, this);
 
-		historyStack = HistoryStack.getHistoryStack();
+		historyStack = new HistoryStack();
 
 		setLayout(new BorderLayout(20, 20));
 

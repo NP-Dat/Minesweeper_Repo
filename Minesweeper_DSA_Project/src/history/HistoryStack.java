@@ -10,16 +10,16 @@ public class HistoryStack implements iHistoryStackObserve {
     private ArrayList<int[][]> historyStack = new ArrayList<int[][]>();
     private int top;
 
-    private HistoryStack(){
+    public HistoryStack(){
         top = -1;
     }
 
-    public static HistoryStack getHistoryStack(){
-        if(instance == null){
-            instance = new HistoryStack();
-        }
-        return instance;
-    }
+//    public static HistoryStack getHistoryStack(){
+//        if(instance == null){
+//            instance = new HistoryStack();
+//        }
+//        return instance;
+//    }
 
     @Override
     public void update(int[][] arrayInteraction) {
