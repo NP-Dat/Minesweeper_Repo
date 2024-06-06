@@ -3,9 +3,7 @@ package control;
 import java.util.Random;
 
 import UI.ButtonPlay;
-import UI.ButtonSmile;
 import UI.GamePanel;
-import UI.LableNumber;
 import history.HistoryStack;
 
 public class World {
@@ -116,26 +114,26 @@ public class World {
 	}
 
 	public void putFlagWithoutCondition(int i, int j) {
+		if (!arrayBoolean[i][j]) {
+			if (arrayFlag[i][j]) {
+//				flag--;
+				arrayFlag[i][j] = false;
+				arrayButton[i][j].setNumber(-1);
+				arrayButton[i][j].repaint();
+//				game.getP1().updateLbBoom();
 
-		if (arrayFlag[i][j]) {
-			flag--;
-			arrayFlag[i][j] = false;
-			arrayButton[i][j].setNumber(-1);
-			arrayButton[i][j].repaint();
-			game.getP1().updateLbBoom();
+//				arrayInteraction[i][j] = -3;		// -3 for removing Flag
+			}
+			 else{
+//				flag++;
+				arrayFlag[i][j] = true;
+				arrayButton[i][j].setNumber(9);
+				arrayButton[i][j].repaint();
+//				game.getP1().updateLbBoom();
 
-			arrayInteraction[i][j] = 0;		// -3 for removing Flag
-
-		} else if (flag < bomb) {
-			flag++;
-			arrayFlag[i][j] = true;
-			arrayButton[i][j].setNumber(9);
-			arrayButton[i][j].repaint();
-			game.getP1().updateLbBoom();
-
-			arrayInteraction[i][j] = 3;		// 3 for putting Flag
+//				arrayInteraction[i][j] = 3;		// 3 for putting Flag
+			}
 		}
-
 
 	}
 
@@ -373,7 +371,7 @@ public class World {
 		this.isEnd = isEnd;
 	}
 
-	public boolean[][] getArrayPutFlag() {
+	public boolean[][] getArrayFlag() {
 		return arrayFlag;
 	}
 
