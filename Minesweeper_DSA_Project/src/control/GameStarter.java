@@ -2,7 +2,7 @@ package control;
 
 import UI.GameFrame;
 
-public class CommandExecuteGame {
+public class GameStarter {
     
     public void run(){
         GameFrame.getInstance();
