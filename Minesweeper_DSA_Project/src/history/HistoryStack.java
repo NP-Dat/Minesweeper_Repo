@@ -10,16 +10,16 @@ public class HistoryStack implements iHistoryStackObserve {
     private ArrayList<int[][]> historyStack = new ArrayList<int[][]>();
     private int top;
 
-    private HistoryStack(){
+    public HistoryStack(){
         top = -1;
     }
 
-    public static HistoryStack getHistoryStack(){
-        if(instance == null){
-            instance = new HistoryStack();
-        }
-        return instance;
-    }
+//    public static HistoryStack getHistoryStack(){
+//        if(instance == null){
+//            instance = new HistoryStack();
+//        }
+//        return instance;
+//    }
 
     @Override
     public void update(int[][] arrayInteraction) {
@@ -30,13 +30,13 @@ public class HistoryStack implements iHistoryStackObserve {
         top += 1;
         historyStack.add(deepCopy(arrayInteraction));
 
-//   this code is used for showing the all the moves in history
-        for (int[][] state : historyStack) {
-            for (int[] row : state) {
-                System.out.println(Arrays.toString(row));
-            }
-            System.out.println();
-        }
+//   this code is used for showing all the moves in history
+//        for (int[][] state : historyStack) {
+//            for (int[] row : state) {
+//                System.out.println(Arrays.toString(row));
+//            }
+//            System.out.println();
+//        }
     }
 
     public int[][] pop(){
