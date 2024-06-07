@@ -2,9 +2,9 @@ package control;
 
 import UI.GameFrame;
 
-public class CommandController {
+public class CommandExecuteGame {
     
-    public void runGame(){
+    public void run(){
         GameFrame.getInstance();
     }
 }

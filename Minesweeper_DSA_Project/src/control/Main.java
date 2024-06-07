@@ -5,8 +5,9 @@ public class Main {
         // GameFrame.getInstance();
 
         // Command pattern
-        CommandController commandController = new CommandController();
-        Command newGameCommand = new CommandNewGame(commandController);
+
+        CommandExecuteGame commandExecuteGame = new CommandExecuteGame();
+        Command newGameCommand = new CommandNewGame(commandExecuteGame);
 
         newGameCommand.execute();
 

@@ -1,14 +1,14 @@
 package control;
 
 public class CommandNewGame implements Command {
-    private CommandController controller;
+    private CommandExecuteGame newGame;
 
-    public CommandNewGame(CommandController commandController) {
-        this.controller = commandController;
+    public CommandNewGame(CommandExecuteGame game) {
+        this.newGame = game;
     }
 
     @Override
     public void execute(){
-        controller.runGame();
+        newGame.run();
     }   
 }
