@@ -6,8 +6,8 @@ public class Main {
 
         // Command pattern
 
-        CommandExecuteGame commandExecuteGame = new CommandExecuteGame();
-        Command newGameCommand = new CommandNewGame(commandExecuteGame);
+        GameStarter gameStarter = new GameStarter();
+        Command newGameCommand = new NewGameCommand(gameStarter);
 
         newGameCommand.execute();
 
