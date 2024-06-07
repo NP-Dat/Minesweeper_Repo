@@ -1,9 +1,15 @@
 package control;
 
-import UI.GameFrame;
-
 public class Main {
     public static void main(String[] args) {
-        GameFrame.getInstance();
+        // GameFrame.getInstance();
+
+        // Command pattern
+
+        GameStarter gameStarter = new GameStarter();
+        Command newGameCommand = new NewGameCommand(gameStarter);
+
+        newGameCommand.execute();
+
     }
 }
