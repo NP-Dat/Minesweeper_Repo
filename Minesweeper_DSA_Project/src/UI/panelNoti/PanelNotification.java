@@ -27,8 +27,8 @@ public class PanelNotification extends JPanel {
 
 	protected GamePanel game;
 
-	protected ButtonSmile bt;
-	protected ButtonHistory bHistory;
+//	protected ButtonSmile bt;
+//	protected ButtonHistory bHistory;
 
 	protected Timer time;
 	protected int nowTime;
@@ -204,21 +204,21 @@ public class PanelNotification extends JPanel {
 		this.time = time;
 	}
 
-	public ButtonSmile getBt() {
-		return bt;
-	}
+//	public ButtonSmile getBt() {
+//		return bt;
+//	}
 
-	public void setBt(ButtonSmile bt) {
-		this.bt = bt;
-	}
+//	public void setBt(ButtonSmile bt) {
+//		this.bt = bt;
+//	}
 
-	public ButtonHistory getBHistory() {
-		return bHistory;
-	}
+//	public ButtonHistory getBHistory() {
+//		return bHistory;
+//	}
 
-	public void setBHistory(ButtonHistory bHistory) {
-		this.bHistory = bHistory;
-	}
+//	public void setBHistory(ButtonHistory bHistory) {
+//		this.bHistory = bHistory;
+//	}
 
 	public JPanel getPanel(int a) {
         return switch (a) {

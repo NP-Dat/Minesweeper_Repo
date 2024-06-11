@@ -34,6 +34,45 @@ public class ButtonSmile extends iNotiButton {
 
 		stage = now;
 
+		addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				setStage(ButtonSmile.now);
+				repaint();
+
+				int option = JOptionPane.showConfirmDialog(null, "Do you want to play new game?", "Notification",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					p.getGame().getGameFrame().setVisible(false);
+					new GameFrame(p.game.getW(), p.game.getH(), p.game.getBoom());
+				}
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (p.getGame().getWorld().isEnd() || p.getGame().getWorld().isComplete()) {
+					p.getGame().getGameFrame().setVisible(false);
+					new GameFrame(p.game.getW(), p.game.getH(), p.game.getBoom());
+				} else {
+					setStage(ButtonSmile.press);
+					repaint();
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+
 	}
 
 	@Override

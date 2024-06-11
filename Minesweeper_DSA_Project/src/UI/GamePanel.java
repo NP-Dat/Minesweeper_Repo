@@ -4,12 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import UI.panelNoti.ButtonSmile;
 import UI.panelNoti.Decorator.HistoryDecorator;
+import UI.panelNoti.Decorator.PanelDecor;
 import UI.panelNoti.Decorator.SmileDecorator;
+import UI.panelNoti.Decorator.iNotiButton;
 import UI.panelNoti.PanelNotification;
 import control.World;
 import control.iSubject;
@@ -58,9 +59,20 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		getP1().getBt().setStage(ButtonSmile.wow);
-		getP1().getBt().repaint();
+		for(iNotiButton button: PanelDecor.getListButton()) {
+			if (button instanceof ButtonSmile) {
+				ButtonSmile bSmile = (ButtonSmile) button;
+				bSmile.setStage(ButtonSmile.wow);
+				bSmile.repaint();
+			}
+		}
 		ButtonPlay[][] arrayButton = p2.getArrayButton();
+		ButtonSmile bSmile = null;
+		for(iNotiButton button: PanelDecor.getListButton()) {
+			if (button instanceof ButtonSmile) {
+				bSmile = (ButtonSmile) button;
+			}
+		}
 		for (int i = 0; i < arrayButton.length; i++) {
 			for (int j = 0; j < arrayButton[i].length; j++) {
 				if (e.getButton() == 1 && e.getSource() == arrayButton[i][j] && !world.getArrayPutFlag()[i][j]) {
@@ -76,8 +88,8 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 						if (world.isComplete()) {
 
 							getP1().getTime().stop();
-							getP1().getBt().setStage(ButtonSmile.lose);
-							getP1().getBt().repaint();
+							bSmile.setStage(ButtonSmile.lose);
+							bSmile.repaint();
 
 							int option = JOptionPane.showConfirmDialog(this, "You lost, play again?", "Notification",
 									JOptionPane.YES_NO_OPTION);
@@ -91,8 +103,8 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 						else if (world.isEnd()) {
 
 							getP1().getTime().stop();
-							getP1().getBt().setStage(ButtonSmile.win);
-							getP1().getBt().repaint();
+							bSmile.setStage(ButtonSmile.win);
+							bSmile.repaint();
 
 							int option = JOptionPane.showConfirmDialog(this, "You win, play again ?", "Notification",
 									JOptionPane.YES_NO_OPTION);
@@ -127,8 +139,13 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		getP1().getBt().setStage(ButtonSmile.now);
-		getP1().getBt().repaint();
+		for(iNotiButton button: PanelDecor.getListButton()) {
+			if (button instanceof ButtonSmile) {
+				ButtonSmile bSmile = (ButtonSmile) button;
+				bSmile.setStage(ButtonSmile.now);
+				bSmile.repaint();
+			}
+		}
 	}
 
 	@Override
