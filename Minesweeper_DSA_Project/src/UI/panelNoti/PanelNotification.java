@@ -31,8 +31,6 @@ public class PanelNotification extends JPanel {
 	protected Timer time;
 	protected int nowTime;
 
-	protected HistoryStack historyStack;
-
 	public PanelNotification(GamePanel game) {
 		this.game = game;
 		setLayout(new BorderLayout());

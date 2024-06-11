@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HistoryStack implements iHistoryStackObserve {
-
-    private static HistoryStack instance = null;
+    
 
     private ArrayList<int[][]> historyStack = new ArrayList<int[][]>();
     private int top;
@@ -13,13 +12,6 @@ public class HistoryStack implements iHistoryStackObserve {
     public HistoryStack(){
         top = -1;
     }
-
-//    public static HistoryStack getHistoryStack(){
-//        if(instance == null){
-//            instance = new HistoryStack();
-//        }
-//        return instance;
-//    }
 
     @Override
     public void update(int[][] arrayInteraction) {
