@@ -1,5 +1,6 @@
 package UI.panelNoti;
 
+import UI.GameFrame;
 import UI.panelNoti.Decorator.iNotiButton;
 import UI.panelNoti.PanelNotification;
 
@@ -33,29 +34,36 @@ public class ButtonHistory extends iNotiButton{
             public void mouseClicked(MouseEvent e) {
                 if (p.getGame().getWorld().isEnd() || p.getGame().getWorld().isComplete()) {
                     int[][] currentHstack = p.game.getHistoryStack().pop();
-                    for (int i = 0; i < p.getArrayButtonInWorld().length; i++) {
-                        for (int j = 0; j < p.getArrayButtonInWorld()[i].length; j++) {
-                            p.getArrayButtonInWorld()[i][j].setNumber(-1);
-                            p.getArrayButtonInWorld()[i][j].repaint();
-                            p.game.getWorld().getArrayBoolean()[i][j] = false;
+                    if(currentHstack == null){
+                        int option = JOptionPane.showConfirmDialog(p.game, "Game is over, play again ?", "Notification",
+                                JOptionPane.YES_NO_OPTION);
+                        if (option == JOptionPane.YES_OPTION) {
+                            p.game.getGameFrame().setVisible(false);
+                            new GameFrame(p.game.getW(), p.game.getH(), p.game.getBoom());
                         }
-                    }
-
-                    for (int i = 0; i < p.getArrayButtonInWorld().length; i++) {
-                        for (int j = 0; j < p.getArrayButtonInWorld()[i].length; j++) {
-                            if(currentHstack[i][j] == 1){
-                                p.game.getWorld().openWithoutCondition(i,j);
-                            }
-                            else if(currentHstack[i][j] == 3){
-                                p.game.getWorld().putFlagWithoutCondition(i,j);
-                            }
-                            else{
-
+                    } else {
+                        for (int i = 0; i < p.getArrayButtonInWorld().length; i++) {
+                            for (int j = 0; j < p.getArrayButtonInWorld()[i].length; j++) {
+                                p.getArrayButtonInWorld()[i][j].setNumber(-1);
+                                p.getArrayButtonInWorld()[i][j].repaint();
+                                p.game.getWorld().getArrayBoolean()[i][j] = false;
+                                p.game.getWorld().getArrayFlag()[i][j] = false;
                             }
                         }
+
+                        for (int i = 0; i < p.getArrayButtonInWorld().length; i++) {
+                            for (int j = 0; j < p.getArrayButtonInWorld()[i].length; j++) {
+                                if (currentHstack[i][j] == 1) {
+                                    p.game.getWorld().openWithoutCondition(i, j);
+                                } else if (currentHstack[i][j] == 3) {
+                                    p.game.getWorld().putFlagWithoutCondition(i, j);
+                                } else {
+
+                                }
+                            }
+                        }
+
                     }
-
-
 
 
                 }

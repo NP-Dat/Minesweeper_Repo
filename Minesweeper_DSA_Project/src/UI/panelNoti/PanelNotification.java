@@ -27,8 +27,6 @@ public class PanelNotification extends JPanel {
 
 	protected GamePanel game;
 
-//	protected ButtonSmile bt;
-//	protected ButtonHistory bHistory;
 
 	protected Timer time;
 	protected int nowTime;
@@ -37,11 +35,6 @@ public class PanelNotification extends JPanel {
 
 	public PanelNotification(GamePanel game) {
 		this.game = game;
-
-//		lbTime = game.getWorld().getLbTime();
-//		lbBoom = game.getWorld().getLbBoom();		World should not hold the UI components, just let class in UI package do it
-
-//		bt = game.getWorld().getButtonSmile();
 		setLayout(new BorderLayout());
 
 		setBorder(BorderFactory.createLoweredBevelBorder());
@@ -64,99 +57,6 @@ public class PanelNotification extends JPanel {
 			}
 		});
 
-//		p13.add(bt = new ButtonSmile(this));
-//		p13.add(bHistory = new ButtonHistory(this));
-
-
-//		bt.addMouseListener(new MouseListener() {
-//
-//			@Override
-//			public void mouseReleased(MouseEvent e) {
-//				bt.setStage(ButtonSmile.now);
-//				bt.repaint();
-//
-//				int option = JOptionPane.showConfirmDialog(null, "Do you want to play new game?", "Notification",
-//						JOptionPane.YES_NO_OPTION);
-//				if (option == JOptionPane.YES_OPTION) {
-//					getGame().getGameFrame().setVisible(false);
-//					new GameFrame(game.getW(), game.getH(), game.getBoom());
-//				}
-//			}
-//
-//			@Override
-//			public void mousePressed(MouseEvent e) {
-//				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
-//					getGame().getGameFrame().setVisible(false);
-//					new GameFrame(game.getW(), game.getH(), game.getBoom());
-//				} else {
-//					bt.setStage(ButtonSmile.press);
-//					bt.repaint();
-//				}
-//			}
-//
-//			@Override
-//			public void mouseExited(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//			}
-//		});
-
-//		bHistory.addMouseListener(new MouseListener() {
-//
-//			@Override
-//			public void mouseReleased(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mousePressed(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseExited(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseEntered(MouseEvent e) {
-//			}
-//
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
-//					int[][] currentHstack = game.getHistoryStack().pop();
-//					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
-//						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
-//							getArrayButtonInWorld()[i][j].setNumber(-1);
-//							getArrayButtonInWorld()[i][j].repaint();
-//							game.getWorld().getArrayBoolean()[i][j] = false;
-//						}
-//					}
-//
-//					for (int i = 0; i < getArrayButtonInWorld().length; i++) {
-//						for (int j = 0; j < getArrayButtonInWorld()[i].length; j++) {
-//							if(currentHstack[i][j] == 1){
-//								game.getWorld().openWithoutCondition(i,j);
-//							}
-//							else if(currentHstack[i][j] == 3){
-//								game.getWorld().putFlagWithoutCondition(i,j);
-//							}
-//							else{
-//
-//							}
-//						}
-//					}
-//
-//
-//
-//
-//				}
-//			}
-//		});
 	}
 
 	public void updateLbTime() {
@@ -204,21 +104,6 @@ public class PanelNotification extends JPanel {
 		this.time = time;
 	}
 
-//	public ButtonSmile getBt() {
-//		return bt;
-//	}
-
-//	public void setBt(ButtonSmile bt) {
-//		this.bt = bt;
-//	}
-
-//	public ButtonHistory getBHistory() {
-//		return bHistory;
-//	}
-
-//	public void setBHistory(ButtonHistory bHistory) {
-//		this.bHistory = bHistory;
-//	}
 
 	public JPanel getPanel(int a) {
         return switch (a) {

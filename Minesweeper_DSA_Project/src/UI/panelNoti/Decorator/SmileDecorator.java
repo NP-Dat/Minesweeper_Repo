@@ -25,44 +25,7 @@ public class SmileDecorator extends PanelDecor {
             p13.add(button);
         }
 
-//        bt.addMouseListener(new MouseListener() {
-//
-//            @Override
-//            public void mouseReleased(MouseEvent e) {
-//                bt.setStage(ButtonSmile.now);
-//                bt.repaint();
-//
-//                int option = JOptionPane.showConfirmDialog(null, "Do you want to play new game?", "Notification",
-//                        JOptionPane.YES_NO_OPTION);
-//                if (option == JOptionPane.YES_OPTION) {
-//                    getGame().getGameFrame().setVisible(false);
-//                    new GameFrame(game.getW(), game.getH(), game.getBoom());
-//                }
-//            }
-//
-//            @Override
-//            public void mousePressed(MouseEvent e) {
-//                if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
-//                    getGame().getGameFrame().setVisible(false);
-//                    new GameFrame(game.getW(), game.getH(), game.getBoom());
-//                } else {
-//                    bt.setStage(ButtonSmile.press);
-//                    bt.repaint();
-//                }
-//            }
-//
-//            @Override
-//            public void mouseExited(MouseEvent e) {
-//            }
-//
-//            @Override
-//            public void mouseEntered(MouseEvent e) {
-//            }
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//            }
-//        });
+
 
     }
 

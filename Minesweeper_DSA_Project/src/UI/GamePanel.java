@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 
 		world = new World(w, h, boom, this);
 
-		historyStack = HistoryStack.getHistoryStack();
+		historyStack = new HistoryStack();
 
 		setLayout(new BorderLayout(20, 20));
 
@@ -75,7 +75,7 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 		}
 		for (int i = 0; i < arrayButton.length; i++) {
 			for (int j = 0; j < arrayButton[i].length; j++) {
-				if (e.getButton() == 1 && e.getSource() == arrayButton[i][j] && !world.getArrayPutFlag()[i][j]) {
+				if (e.getButton() == 1 && e.getSource() == arrayButton[i][j] && !world.getArrayFlag()[i][j]) {
 
 					if (!getP1().getTime().isRunning()) {
 						getP1().getTime().start();
@@ -117,20 +117,20 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 				} else if (e.getButton() == 3 && e.getSource() == arrayButton[i][j]) {
 					world.putFlag(i, j);
 				}
-				if (e.getClickCount() == 2 && e.getSource() == arrayButton[i][j] && world.getArrayBoolean()[i][j]) {
-					if (!world.clickDouble(i, j)) {
-
-						int option = JOptionPane.showConfirmDialog(this, "You lost, play again?", "Notification",
-								JOptionPane.YES_NO_OPTION);
-
-						if (option == JOptionPane.YES_OPTION) {
-							gameFrame.setVisible(false);
-							new GameFrame(w, h, boom);
-						} else {
-							world.fullTrue();
-						}
-					}
-				}
+//				if (e.getClickCount() == 2 && e.getSource() == arrayButton[i][j] && world.getArrayBoolean()[i][j]) {
+//					if (!world.clickDouble(i, j)) {
+//
+//						int option = JOptionPane.showConfirmDialog(this, "You lost, play again?", "Notification",
+//								JOptionPane.YES_NO_OPTION);
+//
+//						if (option == JOptionPane.YES_OPTION) {
+//							gameFrame.setVisible(false);
+//							new GameFrame(w, h, boom);
+//						} else {
+//							world.fullTrue();
+//						}
+//					}
+//				}
 			}
 		}
 
