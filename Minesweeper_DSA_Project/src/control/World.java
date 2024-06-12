@@ -169,7 +169,8 @@ public class World {
 						return false;
 					}
 
-				} else {
+				}
+				else {
 
 					int number = arrayBomb[i][j];
 
@@ -218,10 +219,10 @@ public class World {
 
 				return true;
 			}
-		} else
+		} else {
 
 			return false;
-
+		}
 	}
 
 	public boolean openWithoutCondition(int i, int j) {

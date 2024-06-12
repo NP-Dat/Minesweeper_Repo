@@ -5,6 +5,7 @@ import UI.panelNoti.Decorator.iNotiButton;
 import UI.panelNoti.PanelNotification;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -12,6 +13,8 @@ public class ButtonHistory extends iNotiButton{
 
     public ButtonHistory(PanelNotification p) {
         this.p = p;
+        setPreferredSize(new Dimension(50, 50));
+
         addMouseListener(new MouseListener() {
 
             @Override

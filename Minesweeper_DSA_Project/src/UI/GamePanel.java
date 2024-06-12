@@ -81,7 +81,6 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 						getP1().getTime().start();
 					}
 
-					world.getArrayInteraction()[i][j] = 1;        // which button have a number and be opened will be marked 1
 
 					if (!world.open(i, j)) {
 
@@ -114,8 +113,14 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 							}
 						}
 					}
+					else {
+						world.getArrayInteraction()[i][j] = 1;        // which button have a number and be opened will be marked 1
+						notifyHistory();
+					}
 				} else if (e.getButton() == 3 && e.getSource() == arrayButton[i][j]) {
 					world.putFlag(i, j);
+					notifyHistory();
+
 				}
 //				if (e.getClickCount() == 2 && e.getSource() == arrayButton[i][j] && world.getArrayBoolean()[i][j]) {
 //					if (!world.clickDouble(i, j)) {
@@ -134,7 +139,6 @@ public class GamePanel extends JPanel implements MouseListener, iSubject {
 			}
 		}
 
-		notifyHistory();
 	}
 
 	@Override
