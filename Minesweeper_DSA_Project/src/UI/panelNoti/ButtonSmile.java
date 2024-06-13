@@ -1,8 +1,11 @@
 package UI.panelNoti;
 
 import UI.GameFrame;
+import UI.Strategy.ButtonSmilePaint;
 import UI.panelNoti.Decorator.iNotiButton;
 import UI.panelNoti.PanelNotification;
+import UI.Strategy.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -28,9 +31,14 @@ public class ButtonSmile extends iNotiButton {
 
 	private int stage;
 
+	private ButtonSmilePaint btnSmilePaint;
+
+
 	public ButtonSmile(PanelNotification p) {
 		this.p = p;
 		setPreferredSize(new Dimension(50, 50));
+		btnSmilePaint = new ButtonSmilePaint(this);
+
 
 		stage = now;
 
@@ -77,31 +85,34 @@ public class ButtonSmile extends iNotiButton {
 
 	@Override
 	public void paint(Graphics g) {
-		switch (stage) {
-		case win:
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smileWin"), 0, 0,
-					getPreferredSize().width, getPreferredSize().height, null);
-			break;
-		case lose:
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smileLose"), 0, 0,
-					getPreferredSize().width, getPreferredSize().height, null);
-			break;
-		case press:
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smilePress"), 0, 0,
-					getPreferredSize().width, getPreferredSize().height, null);
-			break;
-		case wow:
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smilePressPlay"), 0, 0,
-					getPreferredSize().width, getPreferredSize().height, null);
-			break;
-		case now:
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smile"), 0, 0,
-					getPreferredSize().width, getPreferredSize().height, null);
-			break;
 
-		default:
-			break;
-		}
+		btnSmilePaint.paintStrategy(g);
+
+//		switch (stage) {
+//		case win:
+//			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smileWin"), 0, 0,
+//					getPreferredSize().width, getPreferredSize().height, null);
+//			break;
+//		case lose:
+//			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smileLose"), 0, 0,
+//					getPreferredSize().width, getPreferredSize().height, null);
+//			break;
+//		case press:
+//			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smilePress"), 0, 0,
+//					getPreferredSize().width, getPreferredSize().height, null);
+//			break;
+//		case wow:
+//			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smilePressPlay"), 0, 0,
+//					getPreferredSize().width, getPreferredSize().height, null);
+//			break;
+//		case now:
+//			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smile"), 0, 0,
+//					getPreferredSize().width, getPreferredSize().height, null);
+//			break;
+//
+//		default:
+//			break;
+//		}
 
 	}
 
